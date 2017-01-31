@@ -8,7 +8,7 @@
     tools:deviceIds="wear_square">
 
     <mmci.mmcifocusedswipeboard.FSBFocusedBoxesView
-        android:id="@+id/testView"
+        android:id="@+id/FSBFocusedBoxesView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -19,13 +19,13 @@
         android:ems="10"
         android:id="@+id/editText"
         android:textColor="@color/black"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:hint="Text"
         android:singleLine="false"
         android:selectAllOnFocus="false"
         android:textSize="15sp"
+        android:textAlignment="viewStart"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:textAlignment="viewStart" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

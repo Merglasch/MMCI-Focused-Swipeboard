@@ -35,14 +35,14 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         });
         setContentView(R.layout.rect_activity_main);
         text = (EditText) findViewById(R.id.editText);
-       text.setOnClickListener(new View.OnClickListener() {
+        text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO Wenn auf das Textfeld geklickt wird, soll die View/der Fokus geändert werden
                 Log.d("Debug", "onClick performed");
            }
         });
-        testView = findViewById(R.id.testView);
+        testView = findViewById(R.id.FSBFocusedBoxesView);
         testView.setOnTouchListener(this);
 
     }
