@@ -1,19 +1,14 @@
 package mmci.mmcifocusedswipeboard;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
-
-import static android.support.wearable.activity.ConfirmationActivity.EXTRA_MESSAGE;
 
 public class MainActivity extends Activity implements View.OnTouchListener {
 
@@ -25,8 +20,22 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     private float x1,x2,y1,y2;
     static final int MIN_DISTANCE = 30;
     private int charBlock;
-    private int swipeDirection;
+    private int swipeDirection8;
+    private int swipeDirection4=0;
+    private int swipeDirection3=0;
     private ViewFlipper viewFlipper;
+
+    private String[] characters = {
+            "ASDF",
+            "QWE",
+            "RTZU",
+            "IOP",
+            "HJKL",
+            "M,. ",
+            "VGBN",
+            "YXC",
+            };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +71,37 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                     viewFlipper.setDisplayedChild(0);
             }
         });
-        testView = findViewById(R.id.FSBFocusedBoxesView);
-        testView.setOnTouchListener(this);
+        //testView = findViewById(R.id.FSBFocusedBoxesView);
+        //testView.setOnTouchListener(this);
+        for(int i = 0;i<viewFlipper.getChildCount();i++){
+            if(i!=1){
+                viewFlipper.getChildAt(i).setOnTouchListener(this);
+            }
+        }
 
+    }
+
+    private void showCharacters(){
+        switch(viewFlipper.getDisplayedChild()){
+            case 0:
+            case 1:
+                viewFlipper.setDisplayedChild(swipeDirection8 +1);
+                break;
+            case 2:
+            case 4:
+            case 6:
+            case 7:
+            case 8:
+                text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection4-1));
+                viewFlipper.setDisplayedChild(0);
+                break;
+            case 3:
+            case 5:
+            case 9:
+                text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection3-1));
+                viewFlipper.setDisplayedChild(0);
+                break;
+        }
     }
 
     @Override
@@ -96,10 +133,10 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                 if (absDeltaX > MIN_DISTANCE && absDeltaY < MIN_DISTANCE){
                     if (x1 < x2){
                         //left to right swipe
-                        swipeDirection = 5;
+                        swipeDirection8 = 5;
                     } else {
                         //right to left swipe
-                        swipeDirection = 1;
+                        swipeDirection8 = 1;
                     }
                 }
 
@@ -107,10 +144,10 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                 if (absDeltaX < MIN_DISTANCE && absDeltaY > MIN_DISTANCE){
                     if (y1 < y2){
                         //top to bottom swipe
-                        swipeDirection = 7;
+                        swipeDirection8 = 7;
                     } else {
                         //bottom to top swipe
-                        swipeDirection = 3;
+                        swipeDirection8 = 3;
                     }
                 }
 
@@ -118,28 +155,35 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                 if (absDeltaX > MIN_DISTANCE && absDeltaY > MIN_DISTANCE){
                     if (x1 > x2 && y1 < y2) {
                         //top right to bottom left swipe
-                        swipeDirection = 8;
+                        swipeDirection8 = 8;
                     }
                     if (x1 > x2 && y1 > y2) {
                         //bottom right to top left swipe
-                        swipeDirection = 2;
+                        swipeDirection8 = 2;
                     }
                     if (x1 < x2 && y1 < y2) {
                         //top left to bottom right swipe
-                        swipeDirection = 6;
+                        swipeDirection8 = 6;
                     }
                     if (x1 < x2 && y1 > y2) {
                         //bottom left to top right swipe
-                        swipeDirection = 4;
+                        swipeDirection8 = 4;
                     }
                 }
 
+                swipeDirection4=1; //Is it Bottom-Left, Top-Left, Top-Right or Bottom Right? (1,2,3,4)
+                swipeDirection3=1; //Is it Bottom-Left, Top or Bottom Right? (1,2,3)
+
                 // no swipe
                 if (absDeltaX < MIN_DISTANCE && absDeltaY < MIN_DISTANCE){
-                    swipeDirection = 0;
+                    swipeDirection8 = 0;
+                    swipeDirection4 = 0;
+                    swipeDirection3 = 0;
+                }else{
+                    showCharacters();
                 }
 
-                Log.d("Debug", "swipe direction: " + swipeDirection);
+                Log.d("Debug", "swipe direction: " + swipeDirection8);
                 break;
         }
         return true;

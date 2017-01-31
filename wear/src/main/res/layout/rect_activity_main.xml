@@ -20,7 +20,6 @@
                 android:id="@+id/FSBFocusedBoxesView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,6 +27,78 @@
             android:orientation="vertical">
             <mmci.mmcifocusedswipeboard.FSBFocusedTextView
                 android:id="@+id/FSBFocusedTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <mmci.mmcifocusedswipeboard.FSBMiddleLeft
+                android:id="@+id/FSBMiddleLeft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <mmci.mmcifocusedswipeboard.FSBTopLeft
+                android:id="@+id/FSBTopLeft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <mmci.mmcifocusedswipeboard.FSBTopMiddle
+                android:id="@+id/FSBTopMiddle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <mmci.mmcifocusedswipeboard.FSBTopRight
+                android:id="@+id/FSBTopRight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <mmci.mmcifocusedswipeboard.FSBMiddleRight
+                android:id="@+id/FSBMiddleRight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <mmci.mmcifocusedswipeboard.FSBBottomRight
+                android:id="@+id/FSBBottomRight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <mmci.mmcifocusedswipeboard.FSBBottomMiddle
+                android:id="@+id/FSBBottomMiddle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <mmci.mmcifocusedswipeboard.FSBBottomLeft
+                android:id="@+id/FSBBottomLeft"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
