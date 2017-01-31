@@ -7,11 +7,31 @@
     tools:context="mmci.mmcifocusedswipeboard.MainActivity"
     tools:deviceIds="wear_square">
 
-    <mmci.mmcifocusedswipeboard.FSBFocusedBoxesView
-        android:id="@+id/FSBFocusedBoxesView"
+    <ViewFlipper
+        android:id="@+id/daViewFlipper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <mmci.mmcifocusedswipeboard.FSBFocusedBoxesView
+                android:id="@+id/FSBFocusedBoxesView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <mmci.mmcifocusedswipeboard.FSBFocusedTextView
+                android:id="@+id/FSBFocusedTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ViewFlipper>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

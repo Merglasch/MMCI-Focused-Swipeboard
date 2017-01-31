@@ -1,6 +1,7 @@
 package mmci.mmcifocusedswipeboard;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
@@ -10,17 +11,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+import static android.support.wearable.activity.ConfirmationActivity.EXTRA_MESSAGE;
 
 public class MainActivity extends Activity implements View.OnTouchListener {
 
     private TextView mTextView;
     private static EditText text;
     private View testView;
+    private View focusedTextView;
 
     private float x1,x2,y1,y2;
     static final int MIN_DISTANCE = 30;
     private int charBlock;
     private int swipeDirection;
+    private ViewFlipper viewFlipper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +41,25 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         });
         setContentView(R.layout.rect_activity_main);
         text = (EditText) findViewById(R.id.editText);
+        viewFlipper = (ViewFlipper)findViewById(R.id.daViewFlipper);
         text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO Wenn auf das Textfeld geklickt wird, soll die View/der Fokus geändert werden
                 Log.d("Debug", "onClick performed");
+                if(viewFlipper.getDisplayedChild()==0)
+                    viewFlipper.setDisplayedChild(1);
            }
+        });
+        focusedTextView = findViewById(R.id.FSBFocusedTextView);
+        focusedTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO Wenn auf das Textfeld geklickt wird, soll die View/der Fokus geändert werden
+                Log.d("Debug", "onClick performed");
+                if(viewFlipper.getDisplayedChild()==1)
+                    viewFlipper.setDisplayedChild(0);
+            }
         });
         testView = findViewById(R.id.FSBFocusedBoxesView);
         testView.setOnTouchListener(this);
