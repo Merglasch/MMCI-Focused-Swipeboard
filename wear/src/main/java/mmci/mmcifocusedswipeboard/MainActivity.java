@@ -40,6 +40,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             }
         });
         setContentView(R.layout.rect_activity_main);
+
         text = (EditText) findViewById(R.id.editText);
         viewFlipper = (ViewFlipper)findViewById(R.id.daViewFlipper);
         text.setOnClickListener(new View.OnClickListener() {
