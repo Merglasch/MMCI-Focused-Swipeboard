@@ -82,10 +82,13 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     }
 
     private void showCharacters(){
+        Log.d("Debug", "displayedChild: " + viewFlipper.getDisplayedChild());
         switch(viewFlipper.getDisplayedChild()){
             case 0:
             case 1:
                 viewFlipper.setDisplayedChild(swipeDirection8 +1);
+                //text.getBackground().setAlpha(128);
+                text.setVisibility(View.INVISIBLE);
                 break;
             case 2:
             case 4:
@@ -93,13 +96,17 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             case 7:
             case 8:
                 text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection4-1));
+                Log.d("Debug", "displayedCharacter: " + characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection4));
+
                 viewFlipper.setDisplayedChild(0);
+                text.setVisibility(View.VISIBLE);
                 break;
             case 3:
             case 5:
             case 9:
                 text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection3-1));
                 viewFlipper.setDisplayedChild(0);
+                text.setVisibility(View.VISIBLE);
                 break;
         }
     }
