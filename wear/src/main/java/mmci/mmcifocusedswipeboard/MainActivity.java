@@ -15,6 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+/**
+ * MMCI-Projekt
+ * Focused-Swipeboard
+ *
+ *
+ * @author Denis Schwager
+ * @author Kevin Bee
+ * @author David Klein
+ *
+ * @version Prototyp 1.0
+ */
 public class MainActivity extends Activity implements View.OnTouchListener {
 
     private TextView mTextView;
