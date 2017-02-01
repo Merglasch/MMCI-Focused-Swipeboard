@@ -147,7 +147,11 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                         //TODO Add back button here
                         break;
                 }
-                text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(charposition));
+                int start = Math.max(text.getSelectionStart(),0);
+                int end = Math.max(text.getSelectionEnd(),0);
+                String insertChar = ""+characters[viewFlipper.getDisplayedChild()-2].charAt(charposition);
+                text.getText().replace(Math.min(start,end),Math.max(start,end),insertChar,0,1);
+//                text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(charposition));
                 viewFlipper.setDisplayedChild(0);
                 text.setSelection(text.getText().length());
                 text.setVisibility(View.VISIBLE);
