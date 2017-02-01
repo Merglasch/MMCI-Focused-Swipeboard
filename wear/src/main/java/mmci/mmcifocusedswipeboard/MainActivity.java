@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     private View focusedTextView;
 
     private float x1,x2,y1,y2;
-    static final int MIN_DISTANCE = 30;
+    static final int MIN_DISTANCE = 50;
     private int charBlock;
     private int swipeDirection8;
     private int swipeDirection4=0;
@@ -83,6 +83,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
     private void showCharacters(){
         Log.d("Debug", "displayedChild: " + viewFlipper.getDisplayedChild());
+        int charposition = 0;
         switch(viewFlipper.getDisplayedChild()){
             case 0:
             case 1:
@@ -95,17 +96,60 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             case 6:
             case 7:
             case 8:
-                text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection4-1));
-                Log.d("Debug", "displayedCharacter: " + characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection4));
 
+                switch (swipeDirection8) {
+                    case 1:
+                    case 8:
+                        charposition = 0;
+                        break;
+                    case 2:
+                        charposition = 1;
+                        break;
+                    case 4:
+                        charposition = 2;
+                        break;
+                    case 5:
+                    case 6:
+                        charposition = 3;
+                        break;
+                    case 3:
+                        //TODO swipe nach oben bewirk nicht eventuell Ausgabe dass swipe nicht eindeutig war?
+                        break;
+                    default:
+                        //TODO Add back button here
+                        break;
+                }
+                text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(charposition));
+                //Log.d("Debug", "displayedCharacter: " + characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection4));
+
+                text.setSelection(text.getText().length());
                 viewFlipper.setDisplayedChild(0);
                 text.setVisibility(View.VISIBLE);
                 break;
             case 3:
             case 5:
             case 9:
-                text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection3-1));
+                switch (swipeDirection8) {
+                    case 1:
+                    case 2:
+                    case 8:
+                        charposition = 0;
+                        break;
+                    case 3:
+                        charposition = 1;
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                        charposition = 2;
+                        break;
+                    default:
+                        //TODO Add back button here
+                        break;
+                }
+                text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(charposition));
                 viewFlipper.setDisplayedChild(0);
+                text.setSelection(text.getText().length());
                 text.setVisibility(View.VISIBLE);
                 break;
         }
