@@ -93,7 +93,7 @@ public class FSBFocusedBoxesView extends View {
         occupiedRoomOfCharacters = charactersPaint.measureText(characters);
         canvas.drawText(characters, getWidth()/3*2-occupiedRoomOfCharacters-(getWidth()/3-occupiedRoomOfCharacters)/2, getHeight()/8*7+16, charactersPaint);
 
-        characters = "M , .";
+        characters = "M , . ␣";
         occupiedRoomOfCharacters = charactersPaint.measureText(characters);
         canvas.drawText(characters, getWidth()-occupiedRoomOfCharacters-(getWidth()/3-occupiedRoomOfCharacters)/2, getHeight()/8*7+16, charactersPaint);
     }
