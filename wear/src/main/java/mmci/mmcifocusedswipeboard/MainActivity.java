@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class MainActivity extends Activity implements View.OnTouchListener {
@@ -83,7 +84,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
     private void showCharacters(){
         Log.d("Debug", "displayedChild: " + viewFlipper.getDisplayedChild());
-        int charposition = 0;
+        int charposition = -3;
         switch(viewFlipper.getDisplayedChild()){
             case 0:
             case 1:
@@ -113,18 +114,14 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                         charposition = 3;
                         break;
                     case 3:
-                        //TODO swipe nach oben bewirk nicht eventuell Ausgabe dass swipe nicht eindeutig war?
+                        //ungültiger Swipe
+                        charposition = -1;
                         break;
-                    default:
-                        //TODO Add back button here
+                    case 7:
+                        //back button
+                        charposition = -2;
                         break;
                 }
-                text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(charposition));
-                //Log.d("Debug", "displayedCharacter: " + characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection4));
-
-                text.setSelection(text.getText().length());
-                viewFlipper.setDisplayedChild(0);
-                text.setVisibility(View.VISIBLE);
                 break;
             case 3:
             case 5:
@@ -143,19 +140,31 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                     case 6:
                         charposition = 2;
                         break;
-                    default:
-                        //TODO Add back button here
+                    case 7:
+                        charposition = -2;
                         break;
                 }
-                int start = Math.max(text.getSelectionStart(),0);
-                int end = Math.max(text.getSelectionEnd(),0);
-                String insertChar = ""+characters[viewFlipper.getDisplayedChild()-2].charAt(charposition);
-                text.getText().replace(Math.min(start,end),Math.max(start,end),insertChar,0,1);
-//                text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(charposition));
-                viewFlipper.setDisplayedChild(0);
-                text.setSelection(text.getText().length());
-                text.setVisibility(View.VISIBLE);
                 break;
+        }
+
+        if (charposition >= 0) {
+            //text.setText(text.getText()+""+characters[viewFlipper.getDisplayedChild()-2].charAt(charposition));
+            String charToInsert = "" + characters[viewFlipper.getDisplayedChild()-2].charAt(charposition);
+            text.getText().insert(text.getSelectionStart(), charToInsert);
+            //Log.d("Debug", "displayedCharacter: " + characters[viewFlipper.getDisplayedChild()-2].charAt(swipeDirection4));
+
+            text.setSelection(text.getSelectionStart());
+            viewFlipper.setDisplayedChild(0);
+            text.setVisibility(View.VISIBLE);
+        }
+
+        if (charposition == -1){
+            Toast.makeText(this, "ungenauer Swipe bitte nochmals", Toast.LENGTH_SHORT).show ();
+        }
+
+        if (charposition == -2){
+            viewFlipper.setDisplayedChild(0);
+            text.setVisibility(View.VISIBLE);
         }
     }
 

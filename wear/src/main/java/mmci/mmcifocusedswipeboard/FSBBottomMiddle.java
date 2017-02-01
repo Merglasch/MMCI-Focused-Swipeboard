@@ -63,5 +63,9 @@ public class FSBBottomMiddle extends View {
         characters = "N";
         occupiedRoomOfCharacters = charactersPaint.measureText(characters);
         canvas.drawText(characters, getWidth()/12*10-(occupiedRoomOfCharacters/2), getHeight()/10*7, charactersPaint);
+
+        characters = "<--";
+        occupiedRoomOfCharacters = charactersPaint.measureText(characters);
+        canvas.drawText(characters, getWidth()/2-(occupiedRoomOfCharacters/2), getHeight()/10*9, charactersPaint);
     }
 }
