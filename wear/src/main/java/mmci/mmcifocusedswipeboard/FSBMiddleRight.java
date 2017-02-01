@@ -50,18 +50,18 @@ public class FSBMiddleRight extends View {
 
         String characters = "H";
         float occupiedRoomOfCharacters = charactersPaint.measureText(characters);
-        canvas.drawText(characters, getWidth()/12*2-(occupiedRoomOfCharacters/2), getHeight()/10*6, charactersPaint);
+        canvas.drawText(characters, getWidth()/12*2-(occupiedRoomOfCharacters/2), getHeight()/10*7, charactersPaint);
 
         characters = "J";
         occupiedRoomOfCharacters = charactersPaint.measureText(characters);
-        canvas.drawText(characters, getWidth()/8*3-(occupiedRoomOfCharacters/2), getHeight()/10*4, charactersPaint);
+        canvas.drawText(characters, getWidth()/12*4-(occupiedRoomOfCharacters/2), getHeight()/10*3, charactersPaint);
 
         characters = "K";
         occupiedRoomOfCharacters = charactersPaint.measureText(characters);
-        canvas.drawText(characters, getWidth()/8*5-(occupiedRoomOfCharacters/2), getHeight()/10*4, charactersPaint);
+        canvas.drawText(characters, getWidth()/12*8-(occupiedRoomOfCharacters/2), getHeight()/10*3, charactersPaint);
 
         characters = "L";
         occupiedRoomOfCharacters = charactersPaint.measureText(characters);
-        canvas.drawText(characters, getWidth()/12*10-(occupiedRoomOfCharacters/2), getHeight()/10*6, charactersPaint);
+        canvas.drawText(characters, getWidth()/12*10-(occupiedRoomOfCharacters/2), getHeight()/10*7, charactersPaint);
     }
 }

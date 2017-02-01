@@ -50,14 +50,14 @@ public class FSBTopRight extends View {
 
         String characters = "I";
         float occupiedRoomOfCharacters = charactersPaint.measureText(characters);
-        canvas.drawText(characters, getWidth()/12*3-(occupiedRoomOfCharacters/2), getHeight()/10*6, charactersPaint);
+        canvas.drawText(characters, getWidth()/12*2-(occupiedRoomOfCharacters/2), getHeight()/10*7, charactersPaint);
 
         characters = "O";
         occupiedRoomOfCharacters = charactersPaint.measureText(characters);
-        canvas.drawText(characters, getWidth()/2-(occupiedRoomOfCharacters/2), getHeight()/10*4, charactersPaint);
+        canvas.drawText(characters, getWidth()/12*6-(occupiedRoomOfCharacters/2), getHeight()/10*3, charactersPaint);
 
         characters = "P";
         occupiedRoomOfCharacters = charactersPaint.measureText(characters);
-        canvas.drawText(characters, getWidth()/12*9-(occupiedRoomOfCharacters/2), getHeight()/10*6, charactersPaint);
+        canvas.drawText(characters, getWidth()/12*10-(occupiedRoomOfCharacters/2), getHeight()/10*7, charactersPaint);
     }
 }
