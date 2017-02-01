@@ -118,4 +118,13 @@
         android:textAlignment="viewStart"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:src="?android:attr/actionModeCloseDrawable"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:id="@+id/deleteButton" />
 </RelativeLayout>

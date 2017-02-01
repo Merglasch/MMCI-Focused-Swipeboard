@@ -3,10 +3,14 @@ package mmci.mmcifocusedswipeboard;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -17,6 +21,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     private static EditText text;
     private View testView;
     private View focusedTextView;
+    private ImageButton deleteButton;
 
     private float x1,x2,y1,y2;
     static final int MIN_DISTANCE = 50;
@@ -58,8 +63,12 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             public void onClick(View view) {
                 //TODO Wenn auf das Textfeld geklickt wird, soll die View/der Fokus geändert werden
                 Log.d("Debug", "onClick performed");
-                if(viewFlipper.getDisplayedChild()==0)
+                if(viewFlipper.getDisplayedChild()==0){
                     viewFlipper.setDisplayedChild(1);
+                    text.setMinLines(2);
+                    text.setMaxLines(3);
+                    text.setLines(2);
+                }
            }
         });
         focusedTextView = findViewById(R.id.FSBFocusedTextView);
@@ -68,8 +77,27 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             public void onClick(View view) {
                 //TODO Wenn auf das Textfeld geklickt wird, soll die View/der Fokus geändert werden
                 Log.d("Debug", "onClick performed");
-                if(viewFlipper.getDisplayedChild()==1)
+                if(viewFlipper.getDisplayedChild()==1){
                     viewFlipper.setDisplayedChild(0);
+                    text.setMinLines(1);
+                    text.setMaxLines(1);
+                    text.setLines(1);
+                }
+            }
+        });
+
+        deleteButton = (ImageButton)findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Debug", "delete clicked");
+                int end = text.getSelectionEnd();
+                if(end>0){
+                    SpannableStringBuilder str = new SpannableStringBuilder(text.getText());
+                    str.replace(end-1,end,"");
+                    text.setText(str);
+                    text.setSelection(end-1);
+                }
             }
         });
         //testView = findViewById(R.id.FSBFocusedBoxesView);
@@ -91,6 +119,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                 viewFlipper.setDisplayedChild(swipeDirection8 +1);
                 //text.getBackground().setAlpha(128);
                 text.setVisibility(View.INVISIBLE);
+                deleteButton.setVisibility(View.INVISIBLE);
                 break;
             case 2:
             case 4:
@@ -156,6 +185,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             text.setSelection(text.getSelectionStart());
             viewFlipper.setDisplayedChild(0);
             text.setVisibility(View.VISIBLE);
+            deleteButton.setVisibility(View.VISIBLE);
         }
 
         if (charposition == -1){
@@ -165,6 +195,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         if (charposition == -2){
             viewFlipper.setDisplayedChild(0);
             text.setVisibility(View.VISIBLE);
+            deleteButton.setVisibility(View.VISIBLE);
         }
     }
 
